@@ -23,9 +23,9 @@ function layoutFor(cur: number, N: number): Slot[] {
     const ad = Math.abs(d);
     if (ad === 0) return { x: 0, scale: 1, rz: 0, op: 1, z: 40 };
     if (ad === 1)
-      return { x: (d < 0 ? 1 : -1) * 34, scale: 0.6, rz: (d < 0 ? -14 : 14), op: 0.45, z: 20 };
+      return { x: (d < 0 ? -1 : 1) * 34, scale: 0.6, rz: (d < 0 ? 14 : -14), op: 0.45, z: 20 };
     if (ad === 2)
-      return { x: (d < 0 ? 1 : -1) * 56, scale: 0.42, rz: (d < 0 ? -20 : 20), op: 0.12, z: 8 };
+      return { x: (d < 0 ? -1 : 1) * 56, scale: 0.42, rz: (d < 0 ? 20 : -20), op: 0.12, z: 8 };
     return { x: 0, scale: 1, rz: 0, op: 0, z: 1 };
   });
 }

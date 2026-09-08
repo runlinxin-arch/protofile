@@ -3,9 +3,9 @@
  * url: 公网域名（上线后替换成你的真实域名，如 https://yourname.com）
  */
 export const siteConfig = {
-  name: "你的名字",
-  nameEn: "Your Name",
-  title: "你的名字 — 作品集 / Portfolio",
+  name: "辛润林",
+  nameEn: "Rain",
+  title: "辛润林 — 作品集 / Portfolio",
   description: "AI 时代的简历与个人作品集：摄影与工作项目。",
   descriptionEn: "A portfolio & resume for the AI era: photography and selected works.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://yourname.vercel.app",

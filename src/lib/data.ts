@@ -7,7 +7,7 @@
 export type L = { zh: string; en: string };
 
 export const profile = {
-  name: { zh: "你的名字", en: "Your Name" } as L,
+  name: { zh: "辛润林", en: "Rain" } as L,
   eyebrow: { zh: "PORTFOLIO · 作品集 · ANNO MMXXV", en: "PORTFOLIO · ANNO MMXXV" } as L,
   role: { zh: "摄影者 · 建造者 · 在 AI 时代保持人性", en: "Photographer · Builder · Staying human in the AI age" } as L,
   cta: { zh: "浏览作品", en: "View works" } as L,
@@ -21,17 +21,17 @@ export const profile = {
     en: "Second paragraph placeholder: background, experience, philosophy — why photography, why code, what you want to leave in the AI age. Keep it short, two or three sentences.",
   } as L,
   facts: [
-    { k: { zh: "坐标", en: "Location" }, v: { zh: "——（占位）", en: "— (placeholder)" } },
+    { k: { zh: "坐标", en: "Location" }, v: { zh: "中国·上海", en: "Shanghai, China" } },
     { k: { zh: "专注", en: "Focus" }, v: { zh: "摄影 · Web 开发（占位）", en: "Photography · Web development (placeholder)" } },
-    { k: { zh: "状态", en: "Status" }, v: { zh: "欢迎合作与交流（占位）", en: "Open to collaboration (placeholder)" } },
+    { k: { zh: "状态", en: "Status" }, v: { zh: "欢迎合作与交流", en: "Open to collaboration" } },
     { k: { zh: "简历", en: "Resume" }, v: { zh: "PDF — 待上传", en: "PDF — pending" } },
   ],
-  email: "hello@example.com",
+  email: "runlinxin053@qq.com",
   socials: [
     { label: { zh: "Instagram · 占位", en: "Instagram · TBD" }, href: "#" },
-    { label: { zh: "GitHub · 占位", en: "GitHub · TBD" }, href: "#" },
+    { label: { zh: "GitHub", en: "GitHub" }, href: "https://github.com/runlinxin-arch/rainsbase" },
   ],
-  footerNote: { zh: "© MMXXV · 你的名字 · 占位内容待替换", en: "© MMXXV · Your Name · placeholders pending" } as L,
+  footerNote: { zh: "© MMXXV · 辛润林 · Rain", en: "© MMXXV · Rain" } as L,
 };
 
 /* ---- 摄影作品：10 个占位位 ---- */
