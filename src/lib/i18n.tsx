@@ -23,6 +23,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const apply = (l: Lang) => {
     setLang(l);
+    document.documentElement.lang = l === "zh" ? "zh-CN" : "en";
     try {
       localStorage.setItem("lang", l);
     } catch {

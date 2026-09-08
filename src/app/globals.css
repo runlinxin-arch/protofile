@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ============================================================
-   TOKENS
+   TOKENS —— 浅色 / 深色 两套主题
    ============================================================ */
 :root {
   --paper: #f6f3ec;
@@ -10,11 +10,34 @@
   --accent: #b3402a;
   --hairline: rgba(24, 26, 28, 0.16);
   --hairline-soft: rgba(24, 26, 28, 0.08);
+  /* 半透明表面与悬停面 */
+  --paper-90: rgba(246, 243, 236, 0.9);
+  --paper-80: rgba(246, 243, 236, 0.8);
+  --surface-hover: #fbf8f1;
+  --tint: rgba(24, 26, 28, 0.025);
+  --tint-strong: rgba(24, 26, 28, 0.02);
+  --shadow: rgba(24, 26, 28, 0.08);
   --serif: "Fraunces", Georgia, "Songti SC", "Noto Serif SC", serif;
   --sans: "Noto Sans SC", "Helvetica Neue", Arial, "PingFang SC", sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --dur: 700ms;
   --header-h: 60px;
+}
+
+/* 深色：暖墨夜色（保留和纸的暖调） */
+[data-theme="dark"] {
+  --paper: #171512;
+  --ink: #e7e2d8;
+  --gray: #9b948a;
+  --accent: #d96a4f;
+  --hairline: rgba(231, 226, 216, 0.16);
+  --hairline-soft: rgba(231, 226, 216, 0.08);
+  --paper-90: rgba(23, 21, 18, 0.9);
+  --paper-80: rgba(23, 21, 18, 0.8);
+  --surface-hover: #221f1b;
+  --tint: rgba(231, 226, 216, 0.04);
+  --tint-strong: rgba(231, 226, 216, 0.03);
+  --shadow: rgba(0, 0, 0, 0.4);
 }
 
 /* ============================================================
@@ -37,6 +60,9 @@ body {
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
   letter-spacing: 0.02em;
+  transition:
+    background 0.4s var(--ease),
+    color 0.4s var(--ease);
 }
 /* 和纸肌理：极轻噪点 */
 body::before {
@@ -103,7 +129,7 @@ section {
   right: 0;
   z-index: 50;
   height: var(--header-h);
-  background: rgba(246, 243, 236, 0.9);
+  background: var(--paper-90);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--hairline-soft);
@@ -187,6 +213,29 @@ section {
 }
 .lang-toggle .on {
   color: var(--ink);
+}
+/* 主题切换按钮 */
+.theme-toggle {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  color: var(--gray);
+  transition:
+    border-color 0.3s,
+    color 0.3s,
+    transform 0.3s var(--ease);
+}
+.theme-toggle:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.theme-toggle:active {
+  transform: scale(0.9);
 }
 
 /* ============================================================
@@ -315,6 +364,107 @@ section {
 }
 
 /* ============================================================
+   大卫头像 —— 扁平矢量雕塑（Hero 签名形象）
+   实心色块、无描边；大理石色板随主题自适应
+   ============================================================ */
+.david {
+  --d-bg: #ece5d8; /* 拱形壁龛 */
+  --d-face: #f0ebe1; /* 面部亮部 */
+  --d-mid: #ddd5c6; /* 面部中调 / 躯干 */
+  --d-shade: #b9b0a0; /* 阴影 */
+  --d-hair: #aca596; /* 卷发主体 */
+  --d-hair-d: #8e887a; /* 卷发暗部 */
+  --d-hair-l: #c6bfb0; /* 卷发亮部 */
+  --d-ink: #2b2823; /* 眉/嘴等深部 */
+  /* 眼睛专用色（固定，不随主题反转，避免“黑眼白+橙瞳”的吸血鬼眼） */
+  --d-eye: #fbf8f1; /* 眼白（浅暖白） */
+  --d-eye-line: #2b2823; /* 眼白描边 */
+  --d-pupil: #2b2823; /* 瞳孔（深色，随光标移动） */
+  position: absolute;
+  right: clamp(36px, 5vw, 110px);
+  top: 50%;
+  width: clamp(300px, 40vw, 540px);
+  transform: translateY(-50%);
+  will-change: transform;
+  pointer-events: none;
+  z-index: 1;
+}
+/* 深色模式：雕像保持“被照亮的浅色大理石”（避免变成深色剪影/暗影人形）；
+   仅壁龛加深以衬托，眉/嘴保持深色以便在浅色脸上可读 */
+[data-theme="dark"] .david {
+  --d-bg: #241f18; /* 壁龛更深，衬托浅色雕像 */
+  --d-face: #e0d9c8; /* 面部保持浅色（微降亮度，融入深色氛围） */
+  --d-mid: #c8bfae;
+  --d-shade: #9d9585;
+  --d-hair: #afa897;
+  --d-hair-d: #867f70;
+  --d-hair-l: #c8c0b0;
+  --d-ink: #2b2823;
+}
+.david-inner {
+  animation: davidFloat 7s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+.david svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.david .eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.12s;
+}
+.david .eye.blink {
+  transform: scaleY(0.08);
+}
+.david .pupil {
+  transition: opacity 0.1s;
+}
+.david .eye.blink .pupil {
+  opacity: 0;
+}
+@keyframes davidFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-9px) rotate(0.5deg);
+  }
+}
+
+/* ============================================================
+   章节角标母题（月桂 / 星盘 / 柱式）
+   ============================================================ */
+.sec-motif {
+  margin-left: auto;
+  align-self: flex-start;
+  width: 30px;
+  height: 30px;
+  color: var(--gray);
+  opacity: 0.65;
+  padding-top: 10px;
+  flex: none;
+}
+.sec-motif svg {
+  width: 100%;
+  height: 100%;
+}
+.era-motif {
+  display: inline-flex;
+  width: 15px;
+  height: 15px;
+  color: var(--gray);
+  vertical-align: -2px;
+  margin-right: 8px;
+}
+.era-motif svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================================
    SECTIONS 通用
    ============================================================ */
 .site-section {
@@ -383,11 +533,15 @@ section {
   background: var(--hairline);
 }
 .rule .dia {
-  width: 7px;
-  height: 7px;
-  transform: rotate(45deg);
-  border: 1px solid var(--ink);
-  opacity: 0.6;
+  width: 26px;
+  height: 20px;
+  display: flex;
+  color: var(--gray);
+  opacity: 0.75;
+}
+.rule .dia svg {
+  width: 100%;
+  height: 100%;
 }
 
 /* ============================================================
@@ -450,7 +604,7 @@ section {
   height: 54px;
   border-radius: 999px;
   border: 1px solid var(--hairline);
-  background: rgba(246, 243, 236, 0.8);
+  background: var(--paper-80);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   color: var(--ink);
@@ -480,8 +634,8 @@ section {
 .car-btn:hover {
   border-color: var(--accent);
   color: var(--accent);
-  background: #fbf8f1;
-  box-shadow: 0 4px 14px rgba(24, 26, 28, 0.08);
+  background: var(--surface-hover);
+  box-shadow: 0 4px 14px var(--shadow);
 }
 .car-prev:hover .arr {
   transform: translateX(-2px);
@@ -514,34 +668,25 @@ section {
   height: 100%;
   overflow: hidden;
   border: 1px solid var(--hairline);
-  background: rgba(24, 26, 28, 0.025);
+  background: var(--tint);
 }
 .car-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-/* 印刷式裁切角标 */
-.car-frame::before,
-.car-frame::after {
+/* 古典内衬画框线（类装裱衬边） */
+.car-frame::before {
   content: "";
   position: absolute;
-  width: 14px;
-  height: 14px;
-  border-color: var(--ink);
-  border-style: solid;
-  opacity: 0.5;
+  inset: 8px;
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  pointer-events: none;
   z-index: 2;
 }
-.car-frame::before {
-  top: 8px;
-  left: 8px;
-  border-width: 1px 0 0 1px;
-}
 .car-frame::after {
-  bottom: 8px;
-  right: 8px;
-  border-width: 0 1px 1px 0;
+  content: none;
 }
 .photo-ph {
   position: absolute;
@@ -615,7 +760,7 @@ section {
   transition: transform 0.5s var(--ease);
 }
 .work:hover {
-  background: rgba(24, 26, 28, 0.02);
+  background: var(--tint-strong);
 }
 .work:hover::before {
   transform: scaleY(1);
@@ -849,6 +994,9 @@ section {
   .about-grid {
     grid-template-columns: 1fr;
   }
+  .david {
+    opacity: 0.9;
+  }
 }
 @media (max-width: 720px) {
   .car-prev {
@@ -897,6 +1045,15 @@ section {
   }
   .hero-name {
     font-size: clamp(2.6rem, 13vw, 3.6rem);
+  }
+  .david {
+    width: min(74vw, 320px);
+    right: 12px;
+    opacity: 0.9;
+  }
+  .sec-motif {
+    width: 24px;
+    height: 24px;
   }
   .car-item {
     width: 72vw;
