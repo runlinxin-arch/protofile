@@ -277,13 +277,6 @@ section {
   letter-spacing: 0.01em;
   margin-bottom: 28px;
 }
-.hero-name .name-latin {
-  display: block;
-  font-size: 0.52em;
-  color: var(--gray);
-  letter-spacing: 0.06em;
-  margin-bottom: 14px;
-}
 .hero-line {
   font-size: clamp(16px, 2vw, 19px);
   color: var(--gray);
@@ -326,9 +319,6 @@ section {
 }
 .hero-eyebrow {
   animation-delay: 0.05s;
-}
-.name-latin {
-  animation-delay: 0.15s;
 }
 .name-main {
   animation-delay: 0.25s;

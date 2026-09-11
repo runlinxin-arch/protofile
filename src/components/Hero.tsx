@@ -30,7 +30,6 @@ export default function Hero() {
       <div className="wrap">
         <p className="hero-eyebrow rise">{profile.eyebrow[lang]}</p>
         <h1 className="hero-name">
-          <span className="name-latin rise">{profile.name.en}</span>
           <span className="name-main rise">{profile.name[lang]}</span>
         </h1>
         <p className="hero-line rise">
