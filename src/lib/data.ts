@@ -26,12 +26,12 @@ export const profile = {
     { k: { zh: "状态", en: "Status" }, v: { zh: "欢迎合作与交流", en: "Open to collaboration" } },
     { k: { zh: "简历", en: "Resume" }, v: { zh: "PDF — 待上传", en: "PDF — pending" } },
   ],
-  email: "runlinxin053@qq.com",
+  email: "xinrunlin616@outlook.com",
   socials: [
     { label: { zh: "Instagram · 占位", en: "Instagram · TBD" }, href: "#" },
     { label: { zh: "GitHub", en: "GitHub" }, href: "https://github.com/runlinxin-arch/rainsbase" },
   ],
-  footerNote: { zh: "© MMXXV · 辛润林 · Rain", en: "© MMXXV · Rain" } as L,
+  footerNote: { zh: "© MMXXV · 辛润林", en: "© MMXXV · Rain" } as L,
 };
 
 /* ---- 摄影作品：10 个占位位 ---- */
