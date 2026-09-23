@@ -29,7 +29,7 @@ export const profile = {
   email: "xinrunlin616@outlook.com",
   socials: [
     { label: { zh: "Instagram · 占位", en: "Instagram · TBD" }, href: "#" },
-    { label: { zh: "GitHub", en: "GitHub" }, href: "https://github.com/runlinxin-arch/rainsbase" },
+    { label: { zh: "GitHub", en: "GitHub" }, href: "https://github.com/runlinxin-arch/protofile" },
   ],
   footerNote: { zh: "© MMXXV · 辛润林", en: "© MMXXV · Rain" } as L,
 };
