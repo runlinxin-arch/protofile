@@ -51,8 +51,7 @@ export interface Photo {
 const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
 
 /* 拍摄参数取自原图 EXIF（索尼 E 18-135mm F3.5-5.6 OSS / FE 24-240mm F3.5-6.3 OSS）。
-   date 为 "—" 表示原图 EXIF 里没有拍摄日期（微信导出时被剥离）。
-   tz = 中文标题，te = 英文标题（06/09 本身即西文标题，两种语言一致）。 */
+   date 统一为 YYYY.MM.DD（由作者确认的拍摄日期；点分格式避免 日/月 歧义）。 */
 const PHOTO_FILES: {
   file: string;
   w: number;
@@ -62,15 +61,15 @@ const PHOTO_FILES: {
   date: string;
   meta: string;
 }[] = [
-  { file: "01.jpg", w: 1333, h: 2000, tz: "踏雪夜行", te: "Night Walk in the Snow", date: "2019 — 01", meta: "39mm · f/4.5 · ISO 6400 · 1/40s" },
-  { file: "02.jpg", w: 1332, h: 2000, tz: "扫雪者", te: "The Snow Sweeper", date: "2019 — 01", meta: "48mm · f/5.6 · ISO 100 · 1/1250s" },
-  { file: "03.jpg", w: 1330, h: 2000, tz: "天使人间", te: "Angels Among Us", date: "—", meta: "72mm · f/20 · ISO 1600 · 1/640s" },
-  { file: "04.jpg", w: 2000, h: 1330, tz: "辛苦了面包师", te: "Thank You, Baker", date: "—", meta: "126mm · f/6.3 · ISO 1600 · 1/125s" },
-  { file: "05.jpg", w: 2000, h: 1330, tz: "塞纳河畔的书报亭", te: "Newsstand on the Seine", date: "—", meta: "128mm · f/25 · ISO 1600 · 1/50s" },
-  { file: "06.jpg", w: 1554, h: 2000, tz: "Leonardo da Vinci", te: "Leonardo da Vinci", date: "2026 — 02", meta: "FE 24-240mm" },
-  { file: "07.jpg", w: 1330, h: 2000, tz: "爱在", te: "Love Is", date: "—", meta: "103mm · f/6.3 · ISO 1600 · 1/100s" },
-  { file: "08.jpg", w: 2000, h: 1330, tz: "圣母百花大教堂", te: "Florence Cathedral", date: "—", meta: "184mm · f/6.3 · ISO 1600 · 1/30s" },
-  { file: "09.jpg", w: 2000, h: 1330, tz: "look at us", te: "look at us", date: "—", meta: "96mm · f/10 · ISO 1600 · 1/640s" },
+  { file: "01.jpg", w: 1333, h: 2000, tz: "踏雪夜行", te: "Night Walk in the Snow", date: "2025.01.20", meta: "39mm · f/4.5 · ISO 6400 · 1/40s" },
+  { file: "02.jpg", w: 1332, h: 2000, tz: "扫雪者", te: "The Snow Sweeper", date: "2025.01.21", meta: "48mm · f/5.6 · ISO 100 · 1/1250s" },
+  { file: "03.jpg", w: 1330, h: 2000, tz: "天使人间", te: "Angels Among Us", date: "2026.02.11", meta: "72mm · f/20 · ISO 1600 · 1/640s" },
+  { file: "04.jpg", w: 2000, h: 1330, tz: "辛苦了面包师", te: "Thank You, Baker", date: "2026.02.01", meta: "126mm · f/6.3 · ISO 1600 · 1/125s" },
+  { file: "05.jpg", w: 2000, h: 1330, tz: "塞纳河畔的书报亭", te: "Newsstand on the Seine", date: "2026.02.01", meta: "128mm · f/25 · ISO 1600 · 1/50s" },
+  { file: "06.jpg", w: 1554, h: 2000, tz: "Leonardo da Vinci", te: "Leonardo da Vinci", date: "2026.02.06", meta: "FE 24-240mm" },
+  { file: "07.jpg", w: 1330, h: 2000, tz: "爱在佛罗伦萨", te: "Love in Florence", date: "2026.02.09", meta: "103mm · f/6.3 · ISO 1600 · 1/100s" },
+  { file: "08.jpg", w: 2000, h: 1330, tz: "圣母百花大教堂", te: "Florence Cathedral", date: "2026.02.09", meta: "184mm · f/6.3 · ISO 1600 · 1/30s" },
+  { file: "09.jpg", w: 2000, h: 1330, tz: "look at us", te: "look at us", date: "2026.02.11", meta: "96mm · f/10 · ISO 1600 · 1/640s" },
 ];
 
 export const photos: Photo[] = PHOTO_FILES.map((p, i) => ({
