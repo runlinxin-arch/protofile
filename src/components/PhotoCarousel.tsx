@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useLang } from "@/lib/i18n";
 import { photos, sections } from "@/lib/data";
+import { carouselFrame } from "@/lib/frame";
 import SectionHead from "./SectionHead";
 import Reveal from "./Reveal";
 import Lightbox from "./Lightbox";
@@ -119,6 +120,7 @@ export default function PhotoCarousel() {
                 zIndex: s.z,
                 opacity: s.op,
                 transform: `translate(-50%,-50%) translateX(${s.x}%) rotateY(${s.rz}deg) scale(${s.scale})`,
+                ...carouselFrame(p.w, p.h),
               };
               if (s.op === 0) style.pointerEvents = "none";
               return (
@@ -133,7 +135,13 @@ export default function PhotoCarousel() {
                 >
                   <div className="car-frame">
                     {p.src ? (
-                      <img src={p.src} alt={p.title[lang]} loading="lazy" />
+                      <img
+                        src={p.src}
+                        alt={p.title[lang]}
+                        width={p.w}
+                        height={p.h}
+                        loading="lazy"
+                      />
                     ) : (
                       <div className="photo-ph">
                         <span className="ph-num">{p.roman}</span>

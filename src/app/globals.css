@@ -643,6 +643,7 @@ section {
   position: absolute;
   left: 50%;
   top: 50%;
+  /* 基准回退值；实际尺寸由 carouselFrame() 按每张作品比例内联覆盖（自适应画框） */
   width: min(56vw, 430px);
   aspect-ratio: 4/5;
   transform: translate(-50%, -50%);
@@ -882,7 +883,9 @@ section {
   position: relative;
 }
 .lb-frame {
+  /* 基准回退值；实际尺寸由 lightboxFrame() 按每张作品比例内联覆盖（自适应画框） */
   aspect-ratio: 4/5;
+  margin-inline: auto;
   border: 1px solid rgba(255, 255, 255, 0.22);
   display: flex;
   align-items: center;

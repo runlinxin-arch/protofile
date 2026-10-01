@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useLang } from "@/lib/i18n";
 import { photos } from "@/lib/data";
+import { lightboxFrame } from "@/lib/frame";
 
 export default function Lightbox({
   index,
@@ -48,9 +49,9 @@ export default function Lightbox({
         <button className="lb-close" onClick={onClose}>
           {lang === "zh" ? "关闭 ESC" : "Close ESC"}
         </button>
-        <div className="lb-frame">
+        <div className="lb-frame" style={lightboxFrame(p.w, p.h)}>
           {p.src ? (
-            <img src={p.src} alt={p.title[lang]} />
+            <img src={p.src} alt={p.title[lang]} width={p.w} height={p.h} />
           ) : (
             <span>PHOTO {String(p.id).padStart(2, "0")}</span>
           )}
