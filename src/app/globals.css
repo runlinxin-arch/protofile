@@ -583,7 +583,11 @@ section {
    ============================================================ */
 .car-stage {
   position: relative;
-  height: clamp(360px, 54vw, 560px);
+  /* 统一槽位：所有作品共用同一尺寸，滚轮几何完全一致。
+     按钮位置也由槽位算出，因此图片在任何视口都不会压到按钮上。 */
+  --slot-w: min(58vw, 560px);
+  --slot-h: clamp(300px, 42vw, 540px);
+  height: clamp(380px, 56vw, 600px);
   perspective: 1400px;
 }
 /* 左右选择按钮（向内贴近相册两侧） */
@@ -614,12 +618,13 @@ section {
   transition: transform 0.3s var(--ease);
 }
 .car-prev {
-  left: calc(50% - min(28vw, 340px));
+  left: calc(50% - var(--slot-w) / 2 - 52px);
   transform: translate(-50%, -50%);
 }
 .car-next {
-  right: calc(50% - min(28vw, 340px));
-  transform: translate(50%, -50%);
+  left: calc(50% + var(--slot-w) / 2 + 52px);
+  right: auto;
+  transform: translate(-50%, -50%);
 }
 .car-btn:hover {
   border-color: var(--accent);
@@ -637,15 +642,15 @@ section {
   transform: translate(-50%, -50%) scale(0.94);
 }
 .car-next:active {
-  transform: translate(50%, -50%) scale(0.94);
+  transform: translate(-50%, -50%) scale(0.94);
 }
 .car-item {
   position: absolute;
   left: 50%;
   top: 50%;
-  /* 基准回退值；实际尺寸由 carouselFrame() 按每张作品比例内联覆盖（自适应画框） */
-  width: min(56vw, 430px);
-  aspect-ratio: 4/5;
+  /* 统一槽位（所有作品尺寸一致）；照片板在其中按自身比例贴合 */
+  width: var(--slot-w);
+  height: var(--slot-h);
   transform: translate(-50%, -50%);
   transition:
     transform 0.65s var(--ease),
@@ -657,17 +662,25 @@ section {
   position: relative;
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* 照片板：贴合照片实际比例，画框随之收放（不裁切、不留白） */
+.car-plate {
+  position: relative;
   overflow: hidden;
   border: 1px solid var(--hairline);
   background: var(--tint);
 }
-.car-frame img {
+.car-plate img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-/* 古典内衬画框线（类装裱衬边） */
-.car-frame::before {
+/* 古典内衬画框线（类装裱衬边）——贴在照片上，随比例收放 */
+.car-plate::before {
   content: "";
   position: absolute;
   inset: 8px;
@@ -676,8 +689,10 @@ section {
   pointer-events: none;
   z-index: 2;
 }
-.car-frame::after {
-  content: none;
+/* 无图时的占位板 */
+.car-plate-ph {
+  width: min(var(--slot-w), 320px);
+  aspect-ratio: 4 / 5;
 }
 .photo-ph {
   position: absolute;
@@ -1048,12 +1063,35 @@ section {
     width: 24px;
     height: 24px;
   }
+  /* 窄屏两侧放不下「按钮 + 大图」，改为按钮下移居中成对排列，
+     图片即可用满可用宽度，且永远不会与按钮重叠 */
+  .car-stage {
+    --slot-w: min(80vw, 420px);
+    --slot-h: clamp(250px, 76vw, 400px);
+    height: calc(var(--slot-h) + 78px);
+  }
   .car-item {
-    width: 72vw;
+    top: calc(var(--slot-h) / 2);
   }
   .car-btn {
     width: 46px;
     height: 46px;
+  }
+  .car-prev,
+  .car-next {
+    top: calc(var(--slot-h) + 20px);
+    transform: translate(-50%, 0);
+  }
+  .car-prev {
+    left: calc(50% - 32px);
+  }
+  .car-next {
+    left: calc(50% + 32px);
+    right: auto;
+  }
+  .car-prev:active,
+  .car-next:active {
+    transform: translate(-50%, 0) scale(0.94);
   }
   .car-btn .arr {
     font-size: 13px;

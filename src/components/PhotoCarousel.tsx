@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useLang } from "@/lib/i18n";
 import { photos, sections } from "@/lib/data";
-import { carouselFrame } from "@/lib/frame";
+import { photoPlate } from "@/lib/frame";
 import SectionHead from "./SectionHead";
 import Reveal from "./Reveal";
 import Lightbox from "./Lightbox";
@@ -120,7 +120,6 @@ export default function PhotoCarousel() {
                 zIndex: s.z,
                 opacity: s.op,
                 transform: `translate(-50%,-50%) translateX(${s.x}%) rotateY(${s.rz}deg) scale(${s.scale})`,
-                ...carouselFrame(p.w, p.h),
               };
               if (s.op === 0) style.pointerEvents = "none";
               return (
@@ -133,19 +132,24 @@ export default function PhotoCarousel() {
                     else setCurrent(i);
                   }}
                 >
+                  {/* .car-frame = 所有作品共用的统一槽位；.car-plate 贴合照片自身比例 */}
                   <div className="car-frame">
                     {p.src ? (
-                      <img
-                        src={p.src}
-                        alt={p.title[lang]}
-                        width={p.w}
-                        height={p.h}
-                        loading="lazy"
-                      />
+                      <div className="car-plate" style={photoPlate(p.w, p.h)}>
+                        <img
+                          src={p.src}
+                          alt={p.title[lang]}
+                          width={p.w}
+                          height={p.h}
+                          loading="lazy"
+                        />
+                      </div>
                     ) : (
-                      <div className="photo-ph">
-                        <span className="ph-num">{p.roman}</span>
-                        <span className="ph-label">PHOTO {String(p.id).padStart(2, "0")}</span>
+                      <div className="car-plate car-plate-ph">
+                        <div className="photo-ph">
+                          <span className="ph-num">{p.roman}</span>
+                          <span className="ph-label">PHOTO {String(p.id).padStart(2, "0")}</span>
+                        </div>
                       </div>
                     )}
                   </div>
