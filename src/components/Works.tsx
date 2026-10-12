@@ -15,8 +15,17 @@ export default function Works() {
         <div className="works-list">
           {projects.map((pr, i) => (
             <Reveal key={i}>
-              <a className="work" href={pr.link}>
-                <span className="y">{pr.year}</span>
+              <a
+                className="work"
+                href={pr.link}
+                {...(/^https?:/.test(pr.link)
+                  ? { target: "_blank", rel: "noreferrer noopener" }
+                  : {})}
+              >
+                <span className="y">
+                  <span className="no">{pr.no}</span>
+                  <span className="yr">{pr.year}</span>
+                </span>
                 <div>
                   <div className="t">{pr.title[lang]}</div>
                   <p className="d">{pr.desc[lang]}</p>

@@ -83,27 +83,30 @@ export const photos: Photo[] = PHOTO_FILES.map((p, i) => ({
   meta: p.meta,
 }));
 
-/* ---- 工作项目：3 个占位位 ---- */
+/* ---- 工作项目：3 个占位位（按编号 01、02、03… 补位） ---- */
 export interface Project {
+  no: string;           // 板块编号：01、02、03…
   year: string;
   title: L;
   desc: L;
   tags: string[];
-  link: string;         // 项目链接占位
+  link: string;         // 项目链接（http(s) 链接会在新标签页打开）
 }
 
 export const projects: Project[] = [
   {
-    year: "2025",
-    title: { zh: "项目名称占位", en: "Project title" },
+    no: "01",
+    year: "2026",
+    title: { zh: "LifeOS · 个人工作与生活管理系统", en: "LifeOS — Personal Life & Work OS" },
     desc: {
-      zh: "一句话描述占位：说明你在这个项目里做了什么、解决了什么问题。占位文字，替换为真实内容。",
-      en: "One-line description placeholder: what you did and the problem you solved. Replace with real content.",
+      zh: "离线优先的 Windows 桌面应用：把待办、日程、长期目标、学习、开发、灵感、健身与饮食收进同一个本地应用，数据只留在本机。",
+      en: "An offline-first Windows desktop app that unifies todos, schedules, long-term goals, learning, dev, ideas, fitness and diet — all data kept on-device.",
     },
-    tags: ["Next.js", "Tailwind", "占位"],
-    link: "#",
+    tags: ["Electron", "React", "TypeScript", "SQLite"],
+    link: "https://github.com/runlinxin-arch/lifeosapp",
   },
   {
+    no: "02",
     year: "2024",
     title: { zh: "项目名称占位", en: "Project title" },
     desc: {
@@ -114,6 +117,7 @@ export const projects: Project[] = [
     link: "#",
   },
   {
+    no: "03",
     year: "2023",
     title: { zh: "项目名称占位", en: "Project title" },
     desc: {

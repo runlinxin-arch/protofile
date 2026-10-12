@@ -772,10 +772,24 @@ section {
   transform: scaleY(1);
 }
 .work .y {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   font-family: var(--serif);
-  font-size: 15px;
-  color: var(--gray);
   letter-spacing: 0.1em;
+}
+.work .no {
+  font-size: 15px;
+  color: var(--ink);
+  transition: color 0.3s;
+}
+.work:hover .no {
+  color: var(--accent);
+}
+.work .yr {
+  font-size: 11px;
+  color: var(--gray);
+  letter-spacing: 0.16em;
 }
 .work .t {
   font-size: clamp(17px, 2.2vw, 21px);
