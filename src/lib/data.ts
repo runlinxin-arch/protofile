@@ -28,7 +28,7 @@ export const profile = {
     { k: { zh: "状态", en: "Status" }, v: { zh: "欢迎合作与交流", en: "Open to collaboration" } },
     { k: { zh: "简历", en: "Resume" }, v: { zh: "PDF — 待上传", en: "PDF — pending" } },
   ],
-  email: "xinrunlin616@outlook.com",
+  email: "xinrunlin053@qq.com",
   socials: [
     { label: { zh: "Instagram · 占位", en: "Instagram · TBD" }, href: "#" },
     { label: { zh: "GitHub", en: "GitHub" }, href: "https://github.com/runlinxin-arch/protofile" },
